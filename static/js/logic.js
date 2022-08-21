@@ -36,21 +36,21 @@ const createMap =((Data) => {
     };
 
 //  legend layer
-let legend = L.control({ position: "bottomleft" });
-legend.onAdd = function() {
-    let div = L.DomUtil.create("div", "info legend");
-    let magnitudes = [0, 1, 2, 3, 4, 5];
-    let labels = [];
-    let legendInfo = "<h5>Magnitude</h5>";
-    div.innerHTML = legendInfo;
-    for (var i = 0; i < magnitudes.length; i++) {
-        labels.push('<li style="background-color:' + getColor(magnitudes[i] + 1) + '"> <span>' + magnitudes[i] + (magnitudes[i + 1] ? '&ndash;' + magnitudes[i + 1] + '' : '+') + '</span></li>');
-    }
-    div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    return div;
-};
+    let legend = L.control({ position: "bottomleft" });
+    legend.onAdd = function() {
+        let div = L.DomUtil.create("div", "info legend");
+        let magnitudes = [0, 1, 2, 3, 4, 5];
+        let labels = [];
+        let legendInfo = "<h5>Magnitude</h5>";
+        div.innerHTML = legendInfo;
+        for (var i = 0; i < magnitudes.length; i++) {
+            labels.push('<li style="background-color:' + getColor(magnitudes[i] + 1) + '"> <span>' + magnitudes[i] + (magnitudes[i + 1] ? '&ndash;' + magnitudes[i + 1] + '' : '+') + '</span></li>');
+        }
+        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+        return div;
+    };
 
-legend.addTo(myMap);
+    legend.addTo(myMap);
 });
 
 
@@ -79,9 +79,6 @@ const getColor = ((magnitude)=> {
 
 d3.json(url).then(function(response) {
     createMap(response.features);
-
-
-
 
 });
 
